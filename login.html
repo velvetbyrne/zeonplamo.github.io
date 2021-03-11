@@ -22,6 +22,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> 
 
+    <!--CAPTCHA v3-->
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -130,13 +133,14 @@
 <div class="fadeIn first">
     <h2>Login</h2>
 
-    <form action="login.php" method="post">
+    <form action="login.php" method="post" id="loginform">
       <div class="container" style="text-align:center;">
         <label for="uname"><b>Username</b></label>
         <input type="text" placeholder="Username" name="uname" required>
         <br>
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Password" name="psw" required>
+        <button class="g-recaptcha" data-sitekey="6Lf323oaAAAAAPAsXolHgOwwJLBw0yl2e96gIR9T" data-callback='onSubmit' data-action='submit'>Submit</button>
          
         <div class="container" style="text-align:center;">
         <button type="submit">Login</button>
@@ -206,18 +210,14 @@
     <div class="footer-copyright">
             <p>&copy 2021 Copyright by <a href="http://www.restokueumn.com" target="blank">restokueumn.com</a></p>
     </div>
-
-
-
-
-
-    <script src="script.js"></script>
-    <script src="cart.js"></script>
-
-    <script>
-
-    </script>  
-    
 </body>
 
 </html>
+<!--JS-->
+<script src="script.js"></script>
+<script src="cart.js"></script> 
+<script>
+    function onSubmit(token) {
+      document.getElementById("loginform").submit();
+    }
+</script>
