@@ -39,8 +39,8 @@
 
 <body id="myPage"  data-spy="scroll" data-target=".navbar" data-offset="60">
 
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
-        <a class="navbar-brand" href="#">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+        <a class="navbar-brand" href="index.html">
             <img src="https://media.discordapp.net/attachments/613736379746353154/818471840661241906/Chanteclaire.png" style="width:250px;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -49,13 +49,13 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="home.php#about">About</a>
+                    <a class="nav-link" href="#about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="home.php#staff">Staff</a>
+                    <a class="nav-link" href="#staff">Staff</a>
                 </li>  
                 <li class="nav-item">
-                    <a class="nav-link" href="home.php#contact">Contact</a>
+                    <a class="nav-link" href="#contact">Contact</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="menu.php">Menu</a>
