@@ -1,5 +1,5 @@
 <?php
-    session_start();
+  session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,10 +38,22 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-</head>
-
-<body id="myPage"  data-spy="scroll" data-target=".navbar" data-offset="60">
-
+    <style>
+    label {
+        padding:12px 20px;
+        margin: 8px;
+        text-align: right;
+    }
+    input[type=text], input[type=password] {
+          width: 60%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+          text-align: left;
+        }
+    </style>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
     <a class="navbar-brand" href="index.php">
             <img src="https://media.discordapp.net/attachments/613736379746353154/818471840661241906/Chanteclaire.png" style="width:250px;">
@@ -51,15 +63,6 @@
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php#staff">Staff</a>
-                </li>  
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php#contact">Contact</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="menu.php">Menu</a>
                 </li>
@@ -75,44 +78,56 @@
             </ul>
         </div>  
 </nav>
-
-<main>
-<br>
-<br>
-<br>
-<br>
-<h1>Our Menu</h1>
-<h6>Take a look at our menu!</h6>
-<!--Menu Choice-->
+</head>
+<div style="padding-top:150px;">
+<h1>Add Item Form</h1>
 <div class="row justify-content-center">
-    <table id="menu" class="table table-striped table-bordered" style="width:90%">
-        <thead>
-            <tr>
-            <th><h5><a href="menukue.php" style="color: #a4141c;">CAKES</a></h5></th>
-            <th><h5><a href="menubrownies.php" style="color: #a4141c;">BROWNIES</a></h5></th>
-            <th><h5><a href="menucoklat.php" style="color: #a4141c;">CHOCOLATE</a></h5></th>
-            </tr>
-        </thead>
-        <tr style="text-align:center;">
-            <td>
-            <a href="menukue.php">
-                <img src="/uts/asset/Portrait_CE_0742.png" alt="Cake Menu" style="height:300px;">
-            </a>
-            </td>
-            <td>
-            <a href="menubrownies.php">
-                <img src="/uts/asset/CE1192.png" alt="Brownies Menu" style="height:300px;">
-            </a>
-            </td>
-            <td>
-            <a href="menucoklat.php">
-                <img src="/uts/asset/Crimson_and_White_Choco.png" alt="Chocolate Menu" style="height:300px;">
-            </a>
-            </td>
-        </tr>   
-    </table>
-
-    <footer class="-bg-footer" id="footer">
+    <form action="additem.php" method="post" style="width:85%; border: 1px solid #aaa;" enctype="multipart/form-data">
+      <div class="container" style="text-align:center;">
+        <div class="row">
+            <div class="col-md-6 text-right">
+                <label for="fname"><b>Name</b></label>
+            </div>
+            <div class="col-md-6 text-left">
+                <input type="text" placeholder="Name" name="nama" required>
+            </div>
+            <div class="col-md-6 text-right">
+                <label for="fname"><b>Type</b></label>
+            </div>
+            <div class="col-md-6 text-left" style="padding-top:20px">
+                <select name="tipe" id="tipe">
+                    <option value="Cake">Cake</option>
+                    <option value="Brownies">Brownies</option>
+                    <option value="Chocolate">Chocolate</option>
+                </select>
+            </div>
+            <div class="col-md-6 text-right">
+                <label for="fname"><b>Price</b></label>
+            </div>
+            <div class="col-md-6 text-left">
+                <input type="text" placeholder="Price" name="harga" required>
+            </div>
+            <div class="col-md-6 text-right">
+                <label for="fname"><b>Description</b></label>
+            </div>
+            <div class="col-md-6 text-left">
+                <input type="text" placeholder="Description" name="description" required>
+            </div>
+            <div class="col-md-6 text-right">
+                <label for="fname"><b>Image</b></label>
+            </div>
+            <div class="col-md-6 text-left" style="padding-top:15px;">
+                <input type="file" placeholder="Image" name="filetoupload" id="filetoupload" required>
+            </div> 
+            <div class="container" style="text-align:center;">
+                <input type="submit" value="Save" name="additembutton" style="background-color: #a4141c; color: white; padding: 14px 20px;"></button>
+                <a href="admin.php" class="button input" style="background-color: #a4141c; color: white; padding: 14px 20px;">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+<footer class="-bg-footer" id="footer">
         <div class="container-fluid">
             <div class="row footer-align">
                 <div class="col-md-4 col-sm-4">
@@ -165,23 +180,8 @@
         <a class="to-top" href="#myPage" title="toTop">
             <i class="fa fa-chevron-up"></i>
         </a>
-    </footer>
-
-    <div class="footer-copyright">
-            <p>&copy 2021 Copyright by <a href="http://www.restokueumn.com" target="blank">restokueumn.com</a></p>
-    </div>
-
-
-
-
-
+    </footer>   
     <script src="script.js"></script>
     <script src="cart.js"></script>
-
-    <script>
-
-    </script>  
-    
 </body>
-
 </html>

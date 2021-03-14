@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,9 +24,6 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> 
-
-    <!--CAPTCHA v3-->
-    <script src="https://www.google.com/recaptcha/api.js"></script>
 
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -98,7 +98,7 @@
 <body id="myPage"  data-spy="scroll" data-target=".navbar" data-offset="60">
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
-        <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="index.php">
             <img src="https://media.discordapp.net/attachments/613736379746353154/818471840661241906/Chanteclaire.png" style="width:250px;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -107,23 +107,20 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#staff">Staff</a>
-                </li>  
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="menu.php">Menu</a>
                 </li>
-                <li ckass="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
-                </li>
+                <?php if ($_SESSION['loginstatus'] == 'login') { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
+                <?php } else { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">Login</a>
+                    </li>
+                <?php } ?>    
             </ul>
         </div>  
-    </nav>
+</nav> 
 
 <body>
 <br>
@@ -131,24 +128,33 @@
 <br>
 <br>
 <div class="fadeIn first">
-    <h2>Login</h2>
+    <h2>Register</h2>
 
-    <form action="login.php" method="post" id="loginform">
+    <form action="registering.php" method="post">
       <div class="container" style="text-align:center;">
+        <label for="fname"><b>First Name</b></label>
+        <input type="text" placeholder="First Name" name="fname" required>
+        <br>
+        <label for="lname"><b>Last Name</b></label>
+        <input type="text" placeholder="Last Name" name="lname" required>
+        <br>
         <label for="uname"><b>Username</b></label>
         <input type="text" placeholder="Username" name="uname" required>
         <br>
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Password" name="psw" required>
-        <button class="g-recaptcha" data-sitekey="6Lf323oaAAAAAPAsXolHgOwwJLBw0yl2e96gIR9T" data-callback='onSubmit' data-action='submit'>Submit</button>
+        <br>
+        <label for="cfm"><b>Confirm Password</b></label>
+        <input type="password" placeholder="Password" name="cfm" required>
          
         <div class="container" style="text-align:center;">
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
         </div>
       </div>
     
-      <div class="container" style="background-color:#f1f1f1">
-        <a href="register.html" type="button" class="regbutton" style="color: #f1f1f1;">Register</a>
+      <div class="container" style="background-color:#f1f1f1; text-align: center;">
+        Have an account?
+        <a href="login.php" type="button" class="regbutton" style="color: #f1f1f1;">Login</a>
       </div>
     </form>
     
@@ -210,14 +216,14 @@
     <div class="footer-copyright">
             <p>&copy 2021 Copyright by <a href="http://www.restokueumn.com" target="blank">restokueumn.com</a></p>
     </div>
+
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+
+    <script>
+
+    </script>  
+    
 </body>
 
 </html>
-<!--JS-->
-<script src="script.js"></script>
-<script src="cart.js"></script> 
-<script>
-    function onSubmit(token) {
-      document.getElementById("loginform").submit();
-    }
-</script>

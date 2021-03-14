@@ -1,3 +1,8 @@
+<?php
+session_start();
+$_SESSION['loginstatus'] = '';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,8 +44,8 @@
 
 <body id="myPage"  data-spy="scroll" data-target=".navbar" data-offset="60">
 
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
-        <a class="navbar-brand" href="index.html">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+    <a class="navbar-brand" href="index.php">
             <img src="https://media.discordapp.net/attachments/613736379746353154/818471840661241906/Chanteclaire.png" style="width:250px;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -49,30 +54,36 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#about">About</a>
+                    <a class="nav-link" href="index.php#about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#staff">Staff</a>
+                    <a class="nav-link" href="index.php#staff">Staff</a>
                 </li>  
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
+                    <a class="nav-link" href="index.php#contact">Contact</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="menu.php">Menu</a>
                 </li>
-                <li ckass="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
-                </li>  
+                <?php if ($_SESSION['loginstatus'] == 'login') { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
+                <?php } else { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">Login</a>
+                    </li>
+                <?php } ?>    
             </ul>
         </div>  
-    </nav>
+</nav>
 
     <div class="jumbotron">
         <div class="container-fluid">
             <div class="header-content-inner">
                 <h1>Welcome to Chanteclaire</h1> 
-                <h3>We are proud of our long history of making delicious cakes, warm and 
-                friendly atmosphere and professional staff.</h3>
+                <h3>We are proud of our long history of making delicious chocolates, as well as a warm and 
+                friendly atmosphere created by our professional staff.</h3>
             </div>
         </div>
     </div>
@@ -95,11 +106,23 @@
 
                 <div class="col-sm-7">
                     <div class="row ">
-                        <div class="restaurant-history slideanim text-center">
+                        <div class="restaurant-history text-center">
                             <h3 class="section-heading">What is Chanteclaire?</h3>
-                            <p class="about-history first">
-                              We are a bakery and chocolatier specializing on many kinds of cakes fit for any occassion. From weddings to gifts for you special someone, our array of chefs are always prepared for your order.<br>
-                              During this COVID-19 pandemic, we want to continue offering our services to those who need them. For now 
+                            <p class="about-history">
+                                We are a bakery and chocolatier specializing on many kinds of chocolates fit for any occassion. From weddings to gifts for you special someone, our array of chefs are always prepared for your order.
+                                <br>
+                                <br>
+                                During this COVID-19 pandemic, we want to continue offering our services to those who need them. However due to the strict restrictions and to keep our quality high, customers must order online in order to buy our porudcts. Thank you! 
+                            </p>
+                            <h3 class="section-heading">What types of chocolates are available?</h3>
+                            <p class="about-history">
+                                Chanteclaire offers a large variety of chocolates from bars to cakes to tarts! Our large selection of chocolates means that there is always one type for any occasion. Our chocolates are high-quality and made on demand to ensure that they are fresh and tailor-made to our customer's desires.
+                                <br>
+                                <br>
+                                Our chefs are trained to create any types of chocolates to order, however we recommend you to check our menu before doing a special order in case there might be a design which suits your needs.
+                                <br>
+                                <br>
+                                <button type="button" style="border-radius: 10px; font-size: 25px; background-color: #a4141c;"><a href="menu.php" style="color: aliceblue;">Our Menu</a></button>
                             </p>
                         </div>
                     </div>
@@ -112,12 +135,12 @@
         <div class="container-fluid">
             <h3>Website Builders</h3>
             <hr class="hr-h3s"> 
-                <div class="row text-center slideanim thumbnail-row">
+                <div class="row text-center thumbnail-row">
                     <div class="col-sm-3">
                         <div class="staff">
                             <img src="https://res.cloudinary.com/deb0tkzkf/image/upload/v1615261866/Screenshot_2021-03-09-10-49-03-32_fvbcpg.jpg" class="" alt="chef-img" style="width:170px; height: 170px">
                             <h5 class="">Benjamin Tantra</h5>
-                            <h6>Database Manager</h6>    
+                            <h6>SQL, CRUD and Login/Logout</h6>    
                         </div>
                      </div>
                      <div class="col-sm-3">  
@@ -138,7 +161,7 @@
                         <div class="staff">
                             <img src="https://res.cloudinary.com/deb0tkzkf/image/upload/v1615261871/Screenshot_2021-03-09-10-49-47-10_qyj1qn.jpg" class="" alt="chef-img" style="width:170px; height: 170px">
                             <h5 class="">Michael Kent S</h5>
-                            <h6>Login Function</h6>
+                            <h6>Login/Logout</h6>
                         </div>
                     </div>
                 </div>
@@ -147,7 +170,7 @@
     <section class="bg-contact bg-section" id="contact">
         <div class="container-fluid">
             <h1 class="container-h1">Contact us</h1>
-            <div class="row slideanim">
+            <div class="row">
                 <div class="col-md-6 col-sm-6 contact-left">
                     <div class="left-box">
                         <address class="contact">

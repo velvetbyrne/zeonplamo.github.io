@@ -1,40 +1,92 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
-<head>  
-  <title>Test</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Chanteclaire Home</title>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> 
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Leckerli+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+
+    <!-- Custom CSS -->  
+    <link rel="stylesheet" href="style.css" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="home.php">Home</a></li>
-      <li><a href="#">Contact Us</a></li>
-      <li class="active"><a href="#">Admin</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li class="active"><a href="login.php">Login</a></li>
-    </ul>
-  </div>
+<body id="myPage"  data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+    <a class="navbar-brand" href="index.php">
+            <img src="https://media.discordapp.net/attachments/613736379746353154/818471840661241906/Chanteclaire.png" style="width:250px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="menu.php">Menu</a>
+                </li>
+                <?php if ($_SESSION['loginstatus'] == 'login') { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
+                <?php } else { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">Login</a>
+                    </li>
+                <?php } ?>    
+            </ul>
+        </div>  
 </nav>
 
 <main>
-    <table id="students" class="table table-striped table-bordered" style="width:100%">
+<br>
+<br>
+<br>
+<br>
+<h1>Admin Dashboard</h1>
+<h6>Welcome Administrator!</h1>
+<!--Form to add menu-->
+<div class="text-right">
+<a href="create.php" style="background-color: #a4141c; color: white; padding: 14px 20px;">Add item</a>
+</div>
+<div class="row justify-content-center" style="padding-top: 40px;">
+    <table id="menu" class="table table-striped table-bordered" style="width:90%">
         <thead>
             <tr>
-                <th>Nama</th>
-                <th>Tipe</th>
-                <th>Harga (Rupiah)</th>
-                <th>Foto</th>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Edit/Delete Item</th>
             </tr>
         </thead>
         <?php
@@ -48,25 +100,81 @@
             die("Connection failed: " . $conn->connect_error);
         }
         
-        $sql = "SELECT nama, tipe, harga, foto FROM food";
+        $sql = "SELECT id, nama, tipe, harga, foto, description FROM food";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                echo "<tr>"."<td>". $row["nama"]. "</td>"."<td>". $row["tipe"]. "</td>"."<td>" .$row["harga"] . "</td>"."<td>" .$row["foto"] . "</td>"."</tr>";
-            }
+                echo "<tr> <td> <img src=".$row["foto"]." width='200' height='200' style='display: block; margin-left: auto; margin-right: auto;'> </td> <td>". $row["nama"]. "</td> <td>". $row["description"]. "</td> <td>" .$row["tipe"] . "</td> <td>" .$row["harga"] ."</td> <td> <a style='color:#a4141c;' href='edititem.php?id=".$row["id"] ."'><img src='/uts/asset/edit.png'></a>   <a style='color:#a4141c;' href='deleteitem.php?id=".$row["id"] ."'><img src='/uts/asset/delete.png'></a></td>"."</tr>";
+            }   
         } else {
             echo "0 results";
         }
         $conn->close();
         ?>
     </table>
+</div>
 
-    </article>
-  </main>
-  <script src="./Fixed top navbar example for Bootstrap_files/jquery-3.2.1.slim.min.js.download" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-  <script src="./Fixed top navbar example for Bootstrap_files/popper.min.js.download"></script>
-  <script src="./Fixed top navbar example for Bootstrap_files/bootstrap.min.js.download"></script>
+    <footer class="-bg-footer" id="footer">
+        <div class="container-fluid">
+            <div class="row footer-align">
+                <div class="col-md-4 col-sm-4">
+                    <h5>UMN</h5>
+                    <hr class="hr-foot">
+                    <div class="footer-items">
+                        <p class="footer">
+                            Is a university that was founded in 2006 with a definitive campus located in Kelapa Dua Summarecon Serpong, Tangerang Regency. <br>
+			<br>The university was inaugurated on 20 November 2006. The educational focus is in the field of information and communication technology (ICT). The university was founded by the Kompas Gramedia Group.
+                        </p>
+                        <ul class="social-networks">
+                            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <h5>Our contact</h5>
+                    <hr class="hr-foot">
+                    <div class="footer-items">
+                        <address>
+                                Jl. Boulevard Gading Serpong
+                                <br>
+                                Tangerang, Banten
+                                <br>
+                                Indonesia
+                                <br>
+                                <i class="fa fa-phone address"></i> 62+ 813 422 554
+                                <br>
+                                <i class="fa fa-fax address"></i> 62+ 813 422 554
+                                <br>
+                                <i class="fa fa-envelope address"></i> info@chanteclaire.com</a>
+                        </address>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <h5>Open hours</h5>
+                    <hr class="hr-foot">
+                    <div class="footer-items">
+                        <ul>
+                            <li>Mon-Fri: 08:00-22:00</li>
+                            <li>Sat    : 09:00-22:00</li>
+                            <li>Sun    : Closed</li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <a class="to-top" href="#myPage" title="toTop">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </footer>
 
+    <div class="footer-copyright">
+            <p>&copy 2021 Copyright by <a href="http://www.restokueumn.com" target="blank">restokueumn.com</a></p>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+    
 </body>
 </html>

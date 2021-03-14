@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,36 +81,45 @@
 <br>
 <br>
 <br>
-<h1>Our Menu</h1>
-<h6>Take a look at our menu!</h6>
-<!--Menu Choice-->
+<h1>Our Cakes Menu</h1>
+<h6>Take a look at our selection of cakes</h6>
 <div class="row justify-content-center">
     <table id="menu" class="table table-striped table-bordered" style="width:90%">
         <thead>
             <tr>
-            <th><h5><a href="menukue.php" style="color: #a4141c;">CAKES</a></h5></th>
-            <th><h5><a href="menubrownies.php" style="color: #a4141c;">BROWNIES</a></h5></th>
-            <th><h5><a href="menucoklat.php" style="color: #a4141c;">CHOCOLATE</a></h5></th>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Add/Remove Cart</th>
             </tr>
         </thead>
-        <tr style="text-align:center;">
-            <td>
-            <a href="menukue.php">
-                <img src="/uts/asset/Portrait_CE_0742.png" alt="Cake Menu" style="height:300px;">
-            </a>
-            </td>
-            <td>
-            <a href="menubrownies.php">
-                <img src="/uts/asset/CE1192.png" alt="Brownies Menu" style="height:300px;">
-            </a>
-            </td>
-            <td>
-            <a href="menucoklat.php">
-                <img src="/uts/asset/Crimson_and_White_Choco.png" alt="Chocolate Menu" style="height:300px;">
-            </a>
-            </td>
-        </tr>   
+        <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "uts_pemweb";
+        
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        
+        $sql = "SELECT nama, tipe, harga, foto, description FROM food WHERE tipe = 'Brownies'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                echo "<tr> <td> <img src=".$row["foto"]." width='200' height='200' style='display: block; margin-left: auto; margin-right: auto;'> </td> <td>". $row["nama"]. "</td> <td>". $row["description"]. "</td> <td>" .$row["tipe"] . "</td> <td>" .$row["harga"] . "</td> <td> <button type='button' onclick='addtocart()'><img src='/uts/asset/add.png'></button><button type='button' onclick='deletcart()'><img src='/uts/asset/remove.png'></button> </td> </tr>";
+            }   
+        } else {
+            echo "0 results";
+        }
+        $conn->close();
+        ?>
     </table>
+    <div class="row justify-content-center">
+<main>
 
     <footer class="-bg-footer" id="footer">
         <div class="container-fluid">

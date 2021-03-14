@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2021 at 12:38 PM
+-- Generation Time: Mar 12, 2021 at 04:07 PM
 -- Server version: 10.4.17-MariaDB
--- PHP Version: 7.3.26
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,31 +18,49 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `week4 users`
+-- Database: `uts_pemweb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `students`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `students` (
-  `student_id` int(11) NOT NULL,
-  `firstname` varchar(120) NOT NULL,
-  `lastname` varchar(120) NOT NULL
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(120) NOT NULL,
+  `password` varchar(120) NOT NULL,
+  `usertype` varchar(120) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `students`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `students` (`student_id`, `firstname`, `lastname`) VALUES
-(40220, 'Johnny', 'Ridden'),
-(40221, 'Shin', 'Matsunaga'),
-(40222, 'Uma', 'Lightning'),
-(40223, 'Erik', 'Blanke'),
-(40224, 'Vincent', 'Gleissner');
+INSERT INTO `users` (`id`, `username`, `password`, `usertype`) VALUES
+(1, 'administrator', 'password', 'admin'),
+(2, 'testacc', 'password123', 'user');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

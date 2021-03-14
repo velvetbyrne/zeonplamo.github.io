@@ -8,6 +8,7 @@ html, body {
 
 a {
 	text-decoration: none;
+	color: #ccc;
 }
 
 ul {
@@ -58,8 +59,6 @@ hr {
 	font-weight: 500;
 	display: table;
 	padding: 10px;
-
-	
 }
 
 .btn:hover{
@@ -266,11 +265,11 @@ p.first::first-letter {
 
 
 
-#about .hov-img * {
+.hov-img * {
 	box-sizing: border-box;
 }
 
-#about .hov-img {
+.hov-img {
 	position: relative;
 	display: inline-block;
 	overflow: hidden;
@@ -279,15 +278,15 @@ p.first::first-letter {
 	margin-bottom: 10px;
 }
 
-#about .hov-img img {
+.hov-img img {
 	max-width: 100%;
 }
 
-#about .hov-img-bottom {
+.hov-img-bottom {
 	display: block;
 }
 
-#about .hov-img-top {
+.hov-img-top {
 	opacity: 0;
 	position: absolute;
 	top: 0;
@@ -304,11 +303,11 @@ p.first::first-letter {
 	transition: all 0.4s ease-in-out 0s;
 }
 
-#about .hov-img:hover .hov-img-top {
+.hov-img:hover .hov-img-top {
 	opacity: 1;
 }
 
-#about .hov-img-text {
+.hov-img-text {
 	text-align: center;
 	font-size: 18px;
 	display: inline-block;
@@ -322,19 +321,19 @@ p.first::first-letter {
 	transform: translate(-50%, -50%);
 }
 
-#about .hov-img-text p {
+.hov-img-text p {
 	font-size: 15px;
 	line-height: 1.2em;
 }
 
-#about .hov-img-slideup {
+.hov-img-slideup {
 	-moz-transform: translateY(100%);
 	-webkit-transform: translateY(100%);
 	-ms-transform: translateY(100%);
 	transform: translateY(100%);
 }
 
-#about .hov-img:hover .hov-img-slideup {
+.hov-img:hover .hov-img-slideup {
 	-moz-transform: translateY(0);
 	-webkit-transform: translateY(0);
 	-ms-transform: translateY(0);
