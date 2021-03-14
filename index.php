@@ -1,6 +1,8 @@
 <?php
 session_start();
-$_SESSION['loginstatus'] = '';
+if ($_SESSION['loginstatus'] != 'login') {
+    $_SESSION['loginstatus'] = '';
+}
 ?>
 
 <!DOCTYPE html>

@@ -18,19 +18,19 @@
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        if ($row['usertype'] = 'admin') {
+        if ($row['usertype'] == 'admin') {
             $_SESSION['loginstatus'] = 'login';
             header("location: admin.php");
             exit;
         } 
-        elseif ($row['usertype'] = 'user') {
+        elseif ($row['usertype'] == 'user') {
+            $_SESSION['loginstatus'] = 'login';
             header("location: index.php");
             exit;
-        } 
         }
-    else {
+    } else {
         header("location: register.php");
         exit;
     }
-    $conn->close();
+$conn->close();
 ?>
